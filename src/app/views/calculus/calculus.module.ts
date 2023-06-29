@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user.component';
-import { ModalComponent } from 'src/app/modal/modal.component';
+import { CalculusComponent } from './calculus.component';
 import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    UserComponent,ModalComponent
+    CalculusComponent
   ],
   imports: [
     CommonModule, FormsModule
   ]
 })
-export class UserModule { }
+export class CalculusModule { }

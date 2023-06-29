@@ -7,16 +7,16 @@
         <h1>Authentication</h1>
       </div>
       <div class="mb-3">
-        <input class="form-control" name="email" type="email" placeholder="Email" required>
+        <input class="form-control" name="email" type="email" [(ngModel)]="model.email" placeholder="Email" required>
       </div>
 
       <div class="mb-3">
         <div>
-          <input class="form-control" name="password" type="password" placeholder="Password" required />
+          <input class="form-control" name="password" [(ngModel)]="model.password" type="password" placeholder="Password" required />
         </div>
       </div>
       <div class="bii">
-        <button class="btn btn-primary bi bi-box-arrow-in-right" name="gravar" type="submit"> Login</button>
+        <button class="btn btn-primary bi bi-box-arrow-in-right" name="gravar" (click)="login()"> Login</button>
       </div>
       <div class="link_register">
         <p>Don't have an account? <a (click)="goToRegister()">Register here</a></p>

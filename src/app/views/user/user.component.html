@@ -1,1 +1,55 @@
-<p>user works!</p>
+<!-- modals -->    
+<ng-container *ngIf="modal_1_shown">
+  <ng-container *ngTemplateOutlet="modal_1"></ng-container>
+</ng-container>
+
+    <div>
+      <ul id="ul-nav-bar">
+        <li class="li-nav-bar" style="float:left"><a href=""><img src="assets/logo.png" width="40px"></a></li>
+        <li class="li-nav-bar" id="titulo-pag"><a href="">Registros</a></li>
+        <li class="li-nav-bar"><a a (click)="goToLogout()"><img src="assets/sair.png" width="30px"></a></li>
+        <li class="li-nav-bar"><a (click)="modal_1_shown = !modal_1_shown"><img src="assets/adicionar.png" width="30px"></a></li>
+        <li class="li-nav-bar"><a href=""><img src="assets/calculadora.png" width="30px"></a></li>
+        <li class="li-nav-bar"><a (click)="goToCalculusList()"><img src="assets/pranchetas.png" width="30px"></a></li>
+      </ul>
+    </div>
+    
+    <div class = "titulo">
+      <h1 (click)="getCalculusList()"> Registros  </h1>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome do Registro</th>
+            <th>Data do Registro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of calculusList" style="cursor: pointer" (click)="goToCalculus(item?.id)">
+            <td>{{item?.name}}</td>
+            <td>{{item?.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  
+
+
+
+<ng-template #modal_1>
+  <div class = "backdrop">
+    <div class = "container">
+      <div class = "content">
+        <span class = "modal-close" (click)="modal_1_shown = false">x</span>
+        <div class = "modal-input">
+          <input type="text" [(ngModel)]="new_calculus">
+          <button (click)="createNewCalculus()">Adicionar Calculus</button>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+
+</ng-template>

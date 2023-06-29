@@ -1,0 +1,103 @@
+<!-- modals -->
+<ng-container *ngIf="modals_1_show">
+    <ng-container *ngTemplateOutlet="modal_1"></ng-container>
+</ng-container>
+<ng-container *ngIf="modals_2_show">
+    <ng-container *ngTemplateOutlet="modal_2"></ng-container>
+</ng-container>
+<ng-container *ngIf="modals_3_show">
+    <ng-container *ngTemplateOutlet="modal_3"></ng-container>
+</ng-container>
+<div>
+    <ul id="ul-nav-bar">
+        <li class="li-nav-bar" style="float:left"><a href=""><img src="assets/logo.png" width="40px"></a></li>
+        <li class="li-nav-bar" id="titulo-pag"><a href="">Registros</a></li>
+        <li class="li-nav-bar"><a (click)="goToLogout()"><img src="assets/sair.png" width="30px"></a></li>
+        <li class="li-nav-bar"><a (click)="modals_1_show = !modals_1_show"><img src="assets/adicionar.png"
+                    width="30px"></a></li>
+        <li class="li-nav-bar"><a href=""><img src="assets/calculadora.png" width="30px"></a></li>
+        <li class="li-nav-bar"><a (click)="goToCalculusList()"><img src="assets/pranchetas.png" width="30px"></a></li>
+    </ul>
+</div>
+
+<div>
+    <div id="lista-candidatos">
+        <p id="p-candidatos"><b>Candidatos</b></p>
+        <ul id="ul-candidatos">
+            <li class="li-candidatos" *ngFor="let candidate of candidates">
+                <label id="abrir-popup-btn" for="abrir-popup" style="cursor: pointer" (click)="openCandidateModal(candidate);">{{candidate.name}}</label>
+            </li>
+
+        </ul>
+    </div>
+
+    <div id="area-principal">
+        <h2>Ideais</h2>
+        <div id="keywords">
+            <div class="keyword" *ngFor="let idea of ALLideas; let i = index">
+                <label for="keyword">{{idea.idea}}</label>
+                <input type="range" id="keyword" [value]="idea.value !== null ? idea.value : 0" [(ngModel)]="ALLideas[i].value" name="keyword" min="-10" max="10">
+                <div class="valores-range">
+                    <span class="min">-10</span>
+                    <span class="mid">{{ALLideas[i].value != null ? ALLideas[i].value : 0}}</span>
+                    <span class="max">10</span>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <button type="submit" id="btn-calcular" (click)="calculate()">Calcular</button>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modal_1>
+    <div class="backdrop">
+        <div class="container">
+            <div class="content">
+                <span class="modal-close" (click)="modals_1_show = false">x</span>
+                <div class="modal-input">
+                    <input type="text" [(ngModel)]="new_candidate">
+                    <button (click)="createNewCandidate()">Adicionar Candidato</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #modal_2>
+    <div class="backdrop">
+        <div class="container">
+            <div class="content">
+                <span class="modal-close" (click)="modals_2_show = false">x</span>
+                <div class="modal-input">
+                    <input type="text" [(ngModel)]="new_idea">
+                    <button (click)="addCandidateIdea()">Adicionar Ideia</button>
+                    <p><b>Ideias</b></p>
+                    <li class="li-candidatos" *ngFor="let idea of candidateIdeas[currentCandidate.id]">{{idea.idea}}</li>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+
+<ng-template #modal_3>
+    <div class="backdrop">
+        <div class="container">
+            <div class="content">
+                <span class="modal-close" (click)="modals_3_show = false">x</span>
+                <div class="modal-input">
+                    <p>O resultado que chegamos é:</p>
+                    <span>{{result}}</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
